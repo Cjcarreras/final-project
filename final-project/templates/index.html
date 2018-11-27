@@ -11,7 +11,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   		<div class="collapse navbar-collapse row justify-content-md-center" id="navbarNavAltMarkup">
     		<div class="navbar-nav col-9 justify-content-md-center">
-		      <a class="nav-item nav-link active" href="/">Lista de Proyectos </a>
+		      <a class="nav-item nav-link active" href="/addproject">Lista de Proyectos </a>
 		      <a class="nav-item nav-link active" href="/info">Información</a>
 		      <a class="nav-item nav-link active" href="/info">Cambiar Projecto</a>
 		    </div>
@@ -20,7 +20,7 @@
 
 	<div class="container mt-5">
 		<h3>Add a new project</h3>
-		<form method="post" action="/">
+		<form method="post" action="/addproject">
 			<div class="row">
 				<div class="col">
 					<input type="text" class="form-control" name="expediente" placeholder="Número de expediente">
@@ -35,7 +35,7 @@
 		   	</div>
 			<div class="row mt-3 mb-3">
 				<div class="col">
-		      		<input type="text" class="form-control" name="name" placeholder="Nombre">
+		      		<input type="text" class="form-control" name="name" value="nombre1" placeholder="Nombre">
 		    	</div>
 		    	<div class="col">
 		      		<input type="text" class="form-control" name="place" placeholder="Ubicación">

@@ -26,23 +26,27 @@ class BaseHandler(webapp2.RequestHandler):
 
 
 class MainHandler(BaseHandler):
+    def get(self):
+        return self.render_template("login-index.html")
+
+
+class AddProjectHandler(BaseHandler):
     # con este get recibimos los proyectos de la DB y los mostramos en el INDEX.HTML
     def get(self):
         return self.render_template("index.html", params=get_db())
 
     def post(self):
         # seleccionamos los valores que cogemos de los input
-        expediente = self.request.get("expediente")
-        code = self.request.get("code")
-        name = self.request.get("name")
-        place = self.request.get("place")
-        status = self.request.get("status")
-        comments = self.request.get("comments")
-        saved = Save(expediente=expediente, code=code, name=name, place=place, status=status, comments=comments)
-        saved.put()
+            name = self.request.get("name")
+            expediente = self.request.get("expediente")
+            code = self.request.get("code")
+            place = self.request.get("place")
+            status = self.request.get("status")
+            comments = self.request.get("comments")
+            saved = Save(expediente=expediente, code=code, name=name, place=place, status=status, comments=comments)
+            saved.put()
 
-        # esto es para cuando introduzcas el nuevo proyecto se vuelva a mostrar y ver que se ha guardado
-        return self.redirect_to("project-list")
+            return self.redirect_to("project-list")
 
 
 class ProjectListHandler(BaseHandler):
@@ -53,7 +57,7 @@ class ProjectListHandler(BaseHandler):
     def post(self):
         # quiero que puedas buscar el nombre en la base de datos y te salga en la lista
         nombre = self.request.get("nombre")
-        # con esto realizamos una busqueda en la DB con el valor introducido en el input antes
+        # con esto realizamos una cosulta(busqueda) en la DB con el valor introducido en el input antes
         selected = Save.query(Save.name == nombre)
         selected_key = selected.get()
         params = {
@@ -98,7 +102,8 @@ class ProjectChangerHandler(BaseHandler):
 
 
 app = webapp2.WSGIApplication([
-    webapp2.Route('/', MainHandler, name="project-list"),
+    webapp2.Route('/', MainHandler),
+    webapp2.Route('/addproject', AddProjectHandler, name="project-list"),
     webapp2.Route('/info', ProjectListHandler),
     webapp2.Route('/info/<message_id:\d+>', ProjectInfoHandler, name="project-info"),
     webapp2.Route('/changeproject/<message_id:\d+>/edit', ProjectChangerHandler)],
