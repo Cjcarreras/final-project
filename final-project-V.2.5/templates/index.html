@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<title>T-Ingeniamos | Ingeniería Acústica, Domótica y Telecomunicaciones</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  		<div class="collapse navbar-collapse row justify-content-md-center" id="navbarNavAltMarkup">
+    		<div class="navbar-nav col-9 justify-content-md-center">
+		      <a class="nav-item nav-link active" href="/addproject">Lista de Proyectos </a>
+		      <a class="nav-item nav-link active" href="/info">Información</a>
+		      <a class="nav-item nav-link active" href="/info">Cambiar Projectos</a>
+		    </div>
+		</div>
+	</nav>
+
+	<div class="container mt-5">
+		<h3>Añadir Nuevo Proyecto</h3>
+		<form method="post" action="/addproject">
+			<div class="row">
+				<div class="col">
+					<input type="text" class="form-control" name="expediente" placeholder="Número de expediente">
+				</div>
+                <!-- Lo dejo comentado por si queremos ponerlo. Ahora mismo está para que se añada automáticamente
+				<div class="col">
+					<input type="text" class="form-control" name="start_date" placeholder="Fecha de inicio">
+		    	</div>-->
+		   	 	<div class="col">
+		      		<input type="text" class="form-control" name="code" placeholder="Código">
+		    	</div>
+		   	</div>
+			<div class="row mt-3 mb-3">
+				<div class="col">
+		      		<input type="text" class="form-control" name="name" value="nombre1" placeholder="Nombre">
+		    	</div>
+		    	<div class="col">
+		      		<input type="text" class="form-control" name="place" placeholder="Ubicación">
+		    	</div>
+		    	<div class="col">
+		      		<select class="form-control" name="status">
+		      			<option Selected> Revisado </option>
+		      			<option> No revisado </option>
+		      		</select>
+		    	</div>
+		  	</div>
+		  	<div class="row mt-3 mb-3">
+		    	<div class="col">
+		      		<input id="comment" type="text" class="form-control" name="comments" placeholder="Comentario">
+		    	</div>
+		  	</div>
+		  	<button type="submit">Guardar proyecto</button>
+		</form>
+
+		<div class="container mt-3"><!-- este div es auxiliar para mostrar el mensaje de que se ha guardado-->
+			{{message1}}
+		</div>
+	</div>
+
+	<div class="container mt-5 justify-content-md-center col-10">
+		<table class="table table-striped responsive">
+            <thead>
+                <tr>
+					<th scope="col">Número de Expediente</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %} <!--Bucle para añadir cuantas filas necesitemos-->
+                    <tr>
+						<td> {{project.expediente}} </td>
+                        <td> <a href="/info/{{ project.key.id() }}"> {{project.name}}</a> </td>
+                        <td> {{project.code}} </td>
+                        <td> {{project.start_date|datetimeformat}} </td>
+                        <td> {{project.status}} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+		</table>
+	</div>
+</body>
+</html>

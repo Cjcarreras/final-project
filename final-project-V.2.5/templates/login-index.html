@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/assets/css/login-styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>T-Ingeniamos | Ingeniería Acústica, Domótica y Telecomunicaciones</title>
+  </head>
+  <body>
+    <form class="box" method="post" action="/">
+      <h1>T-INGENIAMOS</h1>
+      <input type="text" name="email" placeholder="Correo Electrónico" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <input type="submit" name="" value="Login" onclick="myFunction()">
+    </form>
+    <div class="social-media">
+      <a href="https://www.facebook.com/profile.php?id=100008121307398" onclick="window.open('https://www.facebook.com/carlos.carreras.754')"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/cjcarreras57?lang=es" onclick="window.open('https://twitter.com/ElPostilla')"><i class="fab fa-twitter"></i></a>
+      <a href="mailto:cjcarreras57@gmail.com; jesustrujillo5023@gmail.com"><i class="fas fa-envelope"></i></a>
+      <sup>&#174;</sup>
+    </div>
+    {% if invalid %}
+    <script>
+      function myFunction() {
+      alert("Email o Contraseña introducidos no son válidos.");
+      }
+    </script>
+    {% endif%}
+  </body>
+</html>
+
